@@ -16,6 +16,8 @@ const config: Config = {
 
       colors: {
         background: '#e0e0e0',
+        nav: '#e3e3e3',
+        title: '#52525b',
       },
     },
   },
