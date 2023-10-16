@@ -41,7 +41,9 @@ export function Navbar() {
           </Link>
         
         <div>
+          <Link href="login">
           <Button size="lg">Login</Button>
+          </Link>
         </div>
         </ul>
       </nav>
