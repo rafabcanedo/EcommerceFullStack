@@ -34,7 +34,7 @@ export class ProductsController {
   }
 
   @Get(':id')
-  async getUsers(
+  async getProduct(
     @Param('id')
     id: string,
   ): Promise<Products> {
@@ -46,13 +46,13 @@ export class ProductsController {
     @Param('id')
     id: string,
     @Body()
-    users: UpdateProductsDto,
+    products: UpdateProductsDto,
   ): Promise<Products> {
-    return this.productsService.uptadeById(id, users);
+    return this.productsService.uptadeById(id, products);
   }
 
   @Delete(':id')
-  async deleteUsers(
+  async deleteProdcts(
     @Param('id')
     id: string,
   ): Promise<Products> {

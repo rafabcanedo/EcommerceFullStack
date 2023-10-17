@@ -1,11 +1,12 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Products } from 'src/products/schemas/products.schema';
 
 @Schema({
   timestamps: true,
 })
 export class Orders {
   @Prop()
-  products: string;
+  products: Products[];
 
   @Prop()
   totalPrice: number;
@@ -14,7 +15,7 @@ export class Orders {
   nameUser: string;
 
   @Prop()
-  adressUser: string;
+  addressUser: string;
 }
 
 export const OrdersSchema = SchemaFactory.createForClass(Orders);

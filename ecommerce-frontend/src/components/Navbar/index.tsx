@@ -24,9 +24,11 @@ export function Navbar() {
               ? 'top-20 opacity-100'
               : 'top-[-490px] md:opacity-100 opacity-0'
           }`}>
+          <Link href="/">
           <li className='text-lg font-sans font-normal hover:underline decoration-emerald-600 mr-6 md:ml-8 md:my-0 my-0 cursor-pointer'>
            Shop
           </li>
+          </Link>
           
           <Link href="cart">
           <li className='text-lg font-sans font-normal hover:underline decoration-emerald-600 mr-6 md:ml-8 md:my-0 my-0 cursor-pointer'>
