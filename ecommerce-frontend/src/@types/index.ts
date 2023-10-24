@@ -23,7 +23,7 @@ export interface IProduct {
  description?: string
  stock?: number
  image: string
- category?: ICategory
+ // category: ICategory
 }
 
 export interface IProductState {
