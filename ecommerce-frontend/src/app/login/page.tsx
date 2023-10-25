@@ -41,7 +41,7 @@ export default function Login() {
      </div>
 
      <div className="flex items-center justify-center">
-      <Button type="submit" size="lg" className="bg-[#2CAEB8] px-20">Login</Button>
+      <Button type="submit" size="lg" className="px-20">Login</Button>
      </div>
 
      <div className="flex flex-row items-center justify-center">

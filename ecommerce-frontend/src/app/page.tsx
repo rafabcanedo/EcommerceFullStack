@@ -1,14 +1,9 @@
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux';
-import { Button } from "@/components/Button/Button";
 import { ProductList } from "@/components/Products/ProductList/ProductList";
 
 export default function Home() {
   return (
-   <div>
-    <Button size="default">Teste</Button>
-
+   <main className="flex min-h-screen flex-col item-center p-24">
     <ProductList />
-   </div>
+   </main>
   )
 }

@@ -51,7 +51,7 @@ export default function Register() {
       </div>
       
       <div className="flex items-center justify-center">
-       <Button type="submit" size="lg" className="bg-[#2CAEB8] px-20">
+       <Button type="submit" size="lg" className="px-20">
         Register
        </Button>
       </div>
