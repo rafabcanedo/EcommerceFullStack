@@ -1,7 +1,10 @@
+"use client"
+import { useState } from "react";
 import { Button } from "@/components/Button/Button";
 import { Input } from "@/components/Inputs/Input/Input";
 import Link from "next/link";
 import { Mail, Lock } from 'lucide-react';
+import { FaFacebookF, FaGoogle } from "react-icons/fa";
 
 export default function Login() {
  return (
@@ -38,6 +41,17 @@ export default function Login() {
        Forgot your
       </span>
       <p className=" text-title hover:text-primary ml-1 cursor-pointer">password?</p>
+     </div>
+
+     <div className="flex flex-row items-center">
+     <div className="bg-stone-500 opacity-40 h-0.5 w-1/2 mt-1" />
+      <span className="ml-2 mr-2 text-sm font-pop text-zinc-400">or</span>
+      <div className="bg-stone-500 opacity-40 h-0.5 w-1/2 mt-1" />
+     </div>
+
+     <div className="flex flex-row w-full gap-8 items-center justify-center">
+      <FaFacebookF color="#3b5998" className="cursor-pointer text-xl" />
+      <FaGoogle color="#EA4335" className="cursor-pointer text-xl" />
      </div>
 
      <div className="flex items-center justify-center">

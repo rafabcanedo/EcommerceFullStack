@@ -12,12 +12,15 @@ export const userSlice = createSlice({
  name: 'user',
  initialState,
  reducers: {
-  setName: (state, action) => {
+  addUser: (state, action) => {
    state.name = action.payload;
-  }
+   state.email = action.payload;
+   state.password = action.payload;
+   state.confirm_password = action.payload;
+  },
  }
 })
 
-export const { setName } = userSlice.actions;
+export const { addUser } = userSlice.actions;
 
 export default userSlice.reducer;
