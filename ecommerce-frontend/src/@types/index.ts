@@ -11,6 +11,13 @@ export interface ISocialProps {
  href: string
 }
 
+export interface IUser {
+ name: string
+ email: string
+ password: string
+ confirm_password: string
+}
+
 export interface ICategory {
  category: 'TECNOLOGIA' | 'LAZER' | 'OUTROS'
 }
@@ -32,9 +39,11 @@ export interface IProductState {
  status: 'loading' | 'error' | 'success' | 'idle'
 }
 
-export interface IUser {
- name: string
- email: string
- password: string
- confirm_password: string
+export interface CartItems {
+ product: IProduct;
+ qty: number;
+}
+
+export interface CartState {
+ cartItems: CartItems[];
 }

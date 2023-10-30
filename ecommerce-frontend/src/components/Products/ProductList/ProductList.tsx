@@ -5,6 +5,7 @@ import { useGetProductsQuery } from "@/redux/api"
 
 
 export function ProductList() {
+ 
  const { isLoading, data } = useGetProductsQuery("");
 
  return (

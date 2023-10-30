@@ -1,14 +1,25 @@
+import { CartProduct } from "@/@types";
 import { Button } from "@/components/Button/Button";
+import { useAppSelector } from "@/redux/store";
 import { ArrowLeft } from 'lucide-react';
 import Link from "next/link";
 
 export default function Cart() {
+
+ const totalItemQty = useAppSelector((state) => {
+  console.log("Selector runned!")
+  return state.cart.products.reduce(
+    (total: number, curr: CartProduct) => (total += curr.qty),
+    0
+  )
+ })
+
  return (
   <div className="flex flex-row justify-between px-4">
    <div className="w-[1100px] h-[500px] border-2 border-gray-200 shadow-md px-4">
     <div className="flex flex-row justify-between mt-4">
     <h1 className="text-2xl font-semibold text-title">Shopping Cart</h1>
-    <span className="text-base font-medium text-title">3 Items</span>
+    <span className="text-base font-medium text-title">{totalItemQty}</span>
     </div>
     <div className="bg-zinc-400 h-0.5 w-full mt-1" />
     <div className="flex flex-col items-center justify-center">
