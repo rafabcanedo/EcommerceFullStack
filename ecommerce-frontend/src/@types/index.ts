@@ -1,4 +1,4 @@
-import { ElementType } from "react"
+import { ElementType, ReactNode } from "react"
 
 export interface IInputProps {
  placeholder: string
@@ -24,7 +24,7 @@ export interface ICategory {
 
 // image?: HTMLImageElement
 export interface IProduct {
- id?: number
+ id?: string
  name: string
  price: number
  description?: string
@@ -39,11 +39,15 @@ export interface IProductState {
  status: 'loading' | 'error' | 'success' | 'idle'
 }
 
-export interface CartItems {
+export interface CartItem {
  product: IProduct;
- qty: number;
+ quantity: number;
 }
 
 export interface CartState {
- cartItems: CartItems[];
+ cartItems: CartItem[];
+}
+
+export type ShoppingCartProviderProps = {
+ children: ReactNode;
 }

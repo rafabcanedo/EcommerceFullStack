@@ -1,71 +1,49 @@
-import { CartItems, CartState, IProduct } from "@/@types";
+import { CartItem, IProduct } from "@/@types";
 import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 
+interface CartState {
+ cartItems: any[]
+}
+
+const cartFromLocalStorage =
+ typeof localStorage !== "undefined" && localStorage.getItem("cart")
+ ? JSON.parse(localStorage.getItem("cart"))
+ : [];
+
 const initialState: CartState = {
- cartItems: [],
+ cartItems: cartFromLocalStorage,
 }
 
 
 export const cartSlice = createSlice({
-    name: 'cart',
-    initialState,
-    reducers: {
-      increment: (state, action: PayloadAction<IProduct>) => {
-        const cartItem = state.cartItems.find(
-          (e) => e.product?.id === action.payload?.id,
-        )
-        // eslint-disable-next-line no-unused-expressions
-        if (cartItem) cartItem.qty++
-        else {
-          state.cartItems.push({
-            product: action.payload,
-            qty: 1,
-          })
-        }
-      },
-  
-      decrement: (state, action: PayloadAction<IProduct>) => {
-        const cartItem = state.cartItems.find(
-          (e) => e.product?.id === action.payload?.id,
-        )
-        if (cartItem) {
-          cartItem.qty--
-          if (cartItem.qty === 0) {
-            state.cartItems = state.cartItems.filter(
-              (e) => e.product?.id !== action.payload?.id,
-            )
-          }
-        }
-      },
+  name: 'cart',
+  initialState,
+  reducers: {
+    addItem: (state, action: PayloadAction<any>) => {
+      const newItem = action.payload;
+      const existingItem = state.cartItems.find(
+        (item) => item.id == newItem.id
+      )
+      if (existingItem) {
+       existingItem.quantity = newItem.quantity;
+      } else {
+       state.cartItems.push(newItem);
+      }
+      localStorage.setItem("cart", JSON.stringify(state.cartItems));
     },
-  })
+    removeItemFromCart: (state, action: PayloadAction<{ id: string }>) => {
+      const itemId = action.payload.id;
+      const updatedState = state.cartItems.filter((item) => item.id !== itemId);
+      state.cartItems.splice(0, state.cartItems.length, ...updatedState);
 
- const cartItems = (state: RootState) => state.cart.cartItems
+      localStorage.setItem("cart", JSON.stringify(state.cartItems));
+    },
+  },
+})
 
- export const productQntSelector = createSelector(
-    [cartItems, (cartItems, productId: number) => productId],
-    (cartItems, productId) =>
-      cartItems.find((e) => e.product?.id === productId)?.qty,
-  )
-  
-  export const totalCartItemSelector = createSelector([cartItems], (cartItems) =>
-    cartItems.reduce(
-      (total: number, curr: CartItems) => (total += curr.qty),
-      0,
-    ),
-  )
-  
-  export const totalPriceSelector = createSelector([cartItems], (cartItems) =>
-    cartItems.reduce(
-      (total: number, curr: CartItems) =>
-        (total += curr.qty * curr.product?.price),
-      0,
-    ),
-  )
-
-export const { increment, decrement } = cartSlice.actions
-export default cartSlice.reducer
+export const { addItem, removeItemFromCart } = cartSlice.actions;
+export default cartSlice.reducer;
 
 // export const cartSlice = createSlice({
 //  name: 'cart',

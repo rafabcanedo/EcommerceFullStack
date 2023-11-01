@@ -1,11 +1,15 @@
 import { IProduct } from "@/@types";
 import { Button } from "@/components/Button/Button";
-import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
 // import Image from "next/image";
-  
-export function ProductCard({ name, image, price }:IProduct) {
 
- const dispatch = useDispatch();
+interface Props extends IProduct {
+ product: IProduct
+}
+
+export function ProductCard({ id, name, image, price, ...props }:Props) {
+ 
+ const router = useRouter();
 
  return (
       <div className="flex w-64 flex-col items-center justify-center rounded-md bg-[#eeeeee]">
@@ -15,8 +19,9 @@ export function ProductCard({ name, image, price }:IProduct) {
           <h3 className="font-sans text-xl text-title">{name}</h3>
           <p className="text-lg font-medium text-hover">R$ {price}</p>
           <Button
+           onClick={() => router.push(`/product/${id}`)}
           >
-           Comprar
+            Ver Produto
           </Button>
         </div>
       </div>

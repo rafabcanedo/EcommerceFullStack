@@ -1,30 +1,38 @@
+"use client"
+
 import { CartProduct } from "@/@types";
 import { Button } from "@/components/Button/Button";
-import { useAppSelector } from "@/redux/store";
-import { ArrowLeft } from 'lucide-react';
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 export default function Cart() {
 
- const totalItemQty = useAppSelector((state) => {
-  console.log("Selector runned!")
-  return state.cart.products.reduce(
-    (total: number, curr: CartProduct) => (total += curr.qty),
-    0
-  )
- })
+ const { cartItems } = useAppSelector((state) => state)
+
+ const dispatch = useAppDispatch()
 
  return (
   <div className="flex flex-row justify-between px-4">
    <div className="w-[1100px] h-[500px] border-2 border-gray-200 shadow-md px-4">
     <div className="flex flex-row justify-between mt-4">
     <h1 className="text-2xl font-semibold text-title">Shopping Cart</h1>
-    <span className="text-base font-medium text-title">{totalItemQty}</span>
+    <span className="text-base font-medium text-title">$ 900</span>
     </div>
     <div className="bg-zinc-400 h-0.5 w-full mt-1" />
     <div className="flex flex-col items-center justify-center">
-    <h3>Your cart is empty</h3>
-    <span>Please, go to Shop and select an item</span>
+    {cartItems && cartItems.length > 0 ? (
+      cartItems.map((item) => (
+        <div key={item.id}>
+
+        </div>
+      ))
+    ) : (
+     <div>
+      <h3>Your cart is empty</h3>
+      <span>Please, go to Shop and select an item</span>
+     </div>
+    )}
     </div>
 
     <div className="flex flex-row items-center justify-start bottom-0">
