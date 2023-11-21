@@ -24,7 +24,7 @@ export interface ICategory {
 
 // image?: HTMLImageElement
 export interface IProduct {
- id?: string
+ id?: number
  name: string
  price: number
  description?: string
@@ -50,4 +50,9 @@ export interface CartState {
 
 export type ShoppingCartProviderProps = {
  children: ReactNode;
+}
+
+export type CartItemProps = {
+ id: number;
+ quantity: number;
 }

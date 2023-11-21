@@ -9,6 +9,7 @@ import {
 import { ReactNode } from 'react'
 import { Footer } from '@/components/Footer'
 import { ReduxProvider } from '../redux/Provider'
+import { ShoppingCartProvider } from '@/context/ShoppingCartContext'
 
 const roboto = Roboto({ subsets: ['latin'], variable: '--font-roboto' })
 
@@ -35,11 +36,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body
         className={`${roboto.variable} ${baiJamjuree.variable} ${poppins.variable} bg-background font-sans`}
       >
+       <ShoppingCartProvider>
        <ReduxProvider>
         <Navbar />
         {children}
         <Footer />
        </ReduxProvider>
+       </ShoppingCartProvider>
       </body>
     </html>
   )

@@ -1,5 +1,7 @@
+"use client"
 import { IProduct } from "@/@types";
 import { Button } from "@/components/Button/Button";
+import { useShoppingCart } from "@/context/ShoppingCartContext";
 import { useRouter } from "next/navigation";
 // import Image from "next/image";
 
@@ -9,7 +11,14 @@ interface Props extends IProduct {
 
 export function ProductCard({ id, name, image, price, ...props }:Props) {
  
- const router = useRouter();
+ const {
+  getItemQuantity,
+  increaseCartQuantity,
+  decreaseCartQuantity,
+  removeFromCart
+ } = useShoppingCart()
+
+ const quantity = getItemQuantity(id)
 
  return (
       <div className="flex w-64 flex-col items-center justify-center rounded-md bg-[#eeeeee]">
@@ -19,9 +28,9 @@ export function ProductCard({ id, name, image, price, ...props }:Props) {
           <h3 className="font-sans text-xl text-title">{name}</h3>
           <p className="text-lg font-medium text-hover">R$ {price}</p>
           <Button
-           onClick={() => router.push(`/product/${id}`)}
+           onClick={() => increaseCartQuantity(id)}
           >
-            Ver Produto
+            Buy
           </Button>
         </div>
       </div>

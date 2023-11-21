@@ -1,5 +1,4 @@
 "use client"
-
 import { CartProduct } from "@/@types";
 import { Button } from "@/components/Button/Button";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
